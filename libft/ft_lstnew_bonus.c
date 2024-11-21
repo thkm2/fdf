@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 10:49:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:04 by kgiraud          ###   ########.fr       */
+/*   Created: 2024/10/05 11:00:08 by kgiraud           #+#    #+#             */
+/*   Updated: 2024/10/05 11:21:42 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstnew(void *content)
 {
-	t_fdf	*env;
+	t_list	*new;
 
-	if (ac != 2)
-		return (0);
-	env = ft_env_initx(av[1]);
-	mlx_loop(env->mlx);
-	return (0);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

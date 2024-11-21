@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 10:49:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:04 by kgiraud          ###   ########.fr       */
+/*   Created: 2024/11/21 15:18:33 by kgiraud           #+#    #+#             */
+/*   Updated: 2024/11/21 15:20:08 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int ac, char **av)
+void	return_error(char *s)
 {
-	t_fdf	*env;
-
-	if (ac != 2)
-		return (0);
-	env = ft_env_initx(av[1]);
-	mlx_loop(env->mlx);
-	return (0);
+	perror(s);
+	exit(1);
 }

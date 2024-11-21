@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 10:49:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:04 by kgiraud          ###   ########.fr       */
+/*   Created: 2024/09/22 20:07:27 by kgiraud           #+#    #+#             */
+/*   Updated: 2024/09/29 14:52:11 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+size_t	ft_strlen(const char *s)
 {
-	t_fdf	*env;
+	size_t	i;
 
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+/*#include <stdio.h>
+#include <string.h>
+
+int main(int ac, char **av)
+{
 	if (ac != 2)
 		return (0);
-	env = ft_env_initx(av[1]);
-	mlx_loop(env->mlx);
+	const char *s = av[1];
+	printf("ma fonction : %zu\n", ft_strlen(s));
+	printf("la vraie : %zu\n", ft_strlen(s));
 	return (0);
-}
+}*/

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 10:49:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:04 by kgiraud          ###   ########.fr       */
+/*   Created: 2024/10/05 13:58:46 by kgiraud           #+#    #+#             */
+/*   Updated: 2024/10/05 14:15:10 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_fdf	*env;
-
-	if (ac != 2)
-		return (0);
-	env = ft_env_initx(av[1]);
-	mlx_loop(env->mlx);
-	return (0);
+	if (!lst || !new)
+		return ;
+	if (*lst)
+		ft_lstlast(*lst)->next = new;
+	else
+		*lst = new;
 }

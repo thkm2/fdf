@@ -4,17 +4,20 @@ CC = cc -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRC = main.c
+SRC = main.c init.c utils.c
 
 OBJ = ${SRC:.c=.o}
 
 MLX_PATH = minilibx/
 LIB_MLX = $(MLX_PATH)libmlx.a
 
+LIBFT_PATH = libft/
+LIBFT = $(LIBFT_PATH)libft.a
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIB_MLX)
-	$(CC) $(OBJ) $(LIB_MLX) -o $(NAME) -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+$(NAME): $(OBJ) $(LIBFT) $(LIB_MLX)
+	$(CC) $(OBJ) $(LIBFT) $(LIB_MLX) -o $(NAME) -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c
 	$(CC) -c $< -o $@
@@ -22,11 +25,16 @@ $(NAME): $(OBJ) $(LIB_MLX)
 $(LIB_MLX):
 	make -C $(MLX_PATH)
 
+$(LIBFT):
+	make -C $(LIBFT_PATH)
+
 clean:
 	$(RM) $(OBJ)
+	make -C $(LIBFT_PATH) clean
 
 fclean: clean
 	$(RM) $(NAME)
+	make -C $(LIBFT_PATH) fclean
 	make -C $(MLX_PATH) clean
 
 re: fclean all

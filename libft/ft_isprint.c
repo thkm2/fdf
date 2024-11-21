@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 10:49:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:04 by kgiraud          ###   ########.fr       */
+/*   Created: 2024/09/22 19:57:19 by kgiraud           #+#    #+#             */
+/*   Updated: 2024/09/29 14:50:21 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-int	main(int ac, char **av)
+int	ft_isprint(int c)
 {
-	t_fdf	*env;
-
-	if (ac != 2)
-		return (0);
-	env = ft_env_initx(av[1]);
-	mlx_loop(env->mlx);
+	if (c >= 32 && c <= 126)
+		return (1);
 	return (0);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int ac, char **av)
+{
+	if (ac != 2)
+		return (0);
+	int c = atoi(av[1]);
+	printf("le résultat de mon isprint : %d\n", ft_isprint(c));
+	printf("le résultat du vrai isprint : %d\n", isprint(c));
+	printf("C est : %c\n", c);
+	return (0);
+}*/
