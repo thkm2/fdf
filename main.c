@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/22 13:59:51 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 14:39:51 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	main(int ac, char **av)
 		return (0);
 	env = ft_env_init(av[1]);
 	ft_parse_map(av[1], env->map);
-	print_map(env->map);
-	//mlx_loop(env->mlx);
+	//print_map(env->map);
+	//mlx_pixel_put(env->mlx, env->win, (WIDTH / 2), (HEIGHT / 2), 0xFFFFFF);
+	draw_map_2d(env->map, env->mlx, env->win);
+	mlx_loop(env->mlx);
 	return (0);
 }

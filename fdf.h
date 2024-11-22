@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:51 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/22 12:50:55 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 14:44:40 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ void	return_error(char *s);
 
 // parse.c
 void	ft_parse_map(char *file_name, t_map *map);
+
+// draw.c
 
 #endif
