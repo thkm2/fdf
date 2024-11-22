@@ -6,36 +6,49 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:47:02 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/20 19:22:25 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 13:51:08 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*parse_map_line(int fd)
+void	ft_parse_line(char *line, t_point *row, int width)
 {
-	
-}
-
-char	**parse_map(char *map_file)
-{
-	int		fd;
 	int		i;
-	int		checker;
-	char	**map;
+	char	**split;
+	char	*comma;
 
-	fd = open(map_file, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
 	i = 0;
-	checker = 1;
-	map = NULL;
-	while (checker)
+	split = ft_split(line, ' ');
+	while (i < width)
 	{
-		map[i] = parse_map_line(fd);
-		if (!map[i])
-			checker = 0;
+		row[i].z = ft_atoi(split[i]);
+		comma = ft_strchr(line, ',');
+		if (comma)
+			row[i].color = 1;
+		else
+			row[i].color = -1;
+		free(split[i]);
 		i++;
 	}
-	
+	free(split);
+}
+
+void	ft_parse_map(char *file_name, t_map *map)
+{
+	int		fd;
+	char	*line;
+	int		row;
+
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return_error("Creation fd error");
+	row = 0;
+	while (get_next_line(fd, &line) > 0)
+	{
+		ft_parse_line(line, map->points[row], map->width);
+		free(line);
+		row++;
+	}
+	close(fd);
 }

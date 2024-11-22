@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/22 11:32:40 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 13:47:25 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_get_map_dimensions(char *file_name, int *width, int *height)
 		(*height)++;
 		free(line);
 	}
+	close(fd);
 }
 
 t_map	*ft_map_init(char *file_name)
@@ -67,6 +68,7 @@ t_map	*ft_map_init(char *file_name)
 		map->points[i] = (t_point *)malloc(sizeof(t_point) * map->width);
 		if (!map->points[i])
 			return_error("Malloc map **points error");
+		i++;
 	}
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:21:16 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/22 10:55:27 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 13:26:02 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ int	get_next_line(int fd, char **rs_line)
 	line = ft_find_line(rest);
 	rest = ft_find_rest(rest);
 	*rs_line = line;
-	return (1);
+	if (line)
+		return (1);
+	return (-1);
 }
 /* #include <stdio.h>
 #include <fcntl.h>
