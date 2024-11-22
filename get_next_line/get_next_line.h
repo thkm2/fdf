@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:18:27 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 14:23:46 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 10:55:31 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, char **rs_line);
 
 int		ft_strlen_gnl(char *s);
 char	*ft_find_nl(char *s);

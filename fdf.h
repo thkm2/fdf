@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:51 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:02 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 10:40:49 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,17 @@
 
 # define ESC 53
 
+typedef struct s_point
+{
+	int	z;
+	int	color;
+}	t_point;
+
 typedef struct s_map
 {
-	int	width;
-	int height;
+	int		width;
+	int		height;
+	t_point	**points;
 }	t_map;
 
 typedef struct s_fdf

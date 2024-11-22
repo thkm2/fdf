@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:21:16 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 14:24:00 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 10:55:27 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,23 @@ char	*ft_read_until_nl(int fd, char *buffer, char *rest)
 	return (rest);
 }
 
-char	*get_next_line(int fd)
+int	get_next_line(int fd, char **rs_line)
 {
 	char		*buffer;
 	char		*line;
 	static char	*rest;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (-1);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (NULL);
+		return (-1);
 	rest = ft_read_until_nl(fd, buffer, rest);
 	line = ft_find_line(rest);
 	rest = ft_find_rest(rest);
-	return (line);
+	*rs_line = line;
+	return (1);
 }
-
 /* #include <stdio.h>
 #include <fcntl.h>
 int main(void)

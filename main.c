@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:50:04 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:20:50 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (0);
-	env = ft_env_initx(av[1]);
+	env = ft_env_init(av[1]);
 	mlx_loop(env->mlx);
 	return (0);
 }

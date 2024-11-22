@@ -6,25 +6,72 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/21 15:49:41 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:32:40 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_map	*ft_map_init(void)
+int	ft_get_width(char *s)
 {
+	int	width;
+	int	i;
+
+	width = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != ' ' && (s[i + 1] == ' ' || s[i + 1] == ',' || s[i + 1] == '\0'))
+			width++;
+		i++;
+	}
+	return (width);
+}
+
+void	ft_get_map_dimensions(char *file_name, int *width, int *height)
+{
+	int		fd;
+	char	*line;
+	int		tmp_width;
+
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return_error("Creation fd error");
+	while (get_next_line(fd, &line) > 0)
+	{
+		tmp_width = ft_get_width(line);
+		if (*width == 0)
+			*width = tmp_width;
+		else if (*width != tmp_width)
+			return_error("Irregular width map error");
+		(*height)++;
+		free(line);
+	}
+}
+
+t_map	*ft_map_init(char *file_name)
+{
+	int		i;
 	t_map	*map;
 
+	i = 0;
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return_error("Malloc struct map error");
-	map->width = 0;
-	map->height = 0;
+	ft_get_map_dimensions(file_name, &map->width, &map->height);
+	map->points = (t_point **)malloc(sizeof(t_point *) * (map->height));
+	if (!map->points)
+		return_error("Malloc map *points error");
+	while (i < map->height)
+	{
+		map->points[i] = (t_point *)malloc(sizeof(t_point) * map->width);
+		if (!map->points[i])
+			return_error("Malloc map **points error");
+	}
 	return (map);
 }
 
-t_fdf	*ft_env_init(char *map_path)
+t_fdf	*ft_env_init(char *file_name)
 {
 	t_fdf	*env;
 
@@ -34,9 +81,9 @@ t_fdf	*ft_env_init(char *map_path)
 	env->mlx = mlx_init();
 	if (!env->mlx)
 		return_error("Mlx init error");
-	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, map_path);
+	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, file_name);
 	if (!env->win)
 		return_error("Mlx new window error");
-	env->map = ft_map_init();
+	env->map = ft_map_init(file_name);
 	return (env);
 }
