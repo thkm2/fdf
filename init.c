@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/22 13:47:25 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:30:29 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 int	ft_get_width(char *s)
 {
-	int	width;
-	int	i;
+	char	**split;
+	int		width;
 
 	width = 0;
-	i = 0;
-	while (s[i])
+	split = ft_split(s, ' ');
+	if (!split)
+		return_error("Split error");
+	while (split[width])
 	{
-		if (s[i] != ' ' && (s[i + 1] == ' ' || s[i + 1] == ',' || s[i + 1] == '\0'))
-			width++;
-		i++;
+		free(split[width]);
+		width++;
 	}
+	free(split);
 	return (width);
 }
 
