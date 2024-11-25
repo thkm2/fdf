@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/22 15:30:29 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/25 15:27:57 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ t_fdf	*ft_env_init(char *file_name)
 	if (!env->win)
 		return_error("Mlx new window error");
 	env->map = ft_map_init(file_name);
+	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
+	env->addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line, &env->endian);
 	return (env);
 }

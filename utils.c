@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:18:33 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/25 13:13:36 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/25 17:14:55 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,12 @@ int	ft_atoi_hex(const char *s)
 			nb += s[i] - '0';
 		i++;
 	}
+	return (nb);
+}
+
+int	ft_abs(int nb)
+{
+	if (nb < 0)
+		return (-nb);
 	return (nb);
 }
