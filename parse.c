@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:47:02 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/22 13:51:08 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/25 13:16:27 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_parse_line(char *line, t_point *row, int width)
 		row[i].z = ft_atoi(split[i]);
 		comma = ft_strchr(line, ',');
 		if (comma)
-			row[i].color = 1;
+			row[i].color = ft_atoi_hex(comma + 1);
 		else
 			row[i].color = -1;
 		free(split[i]);
