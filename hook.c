@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 16:25:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/26 16:43:50 by kgiraud          ###   ########.fr       */
+/*   Created: 2024/11/26 16:24:32 by kgiraud           #+#    #+#             */
+/*   Updated: 2024/11/26 16:48:40 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int ac, char **av)
+int	ft_controls_hook(int key)
 {
-	t_fdf	*env;
-
-	if (ac != 2)
-		return (0);
-	env = ft_env_init(av[1]);
-	ft_parse_map(av[1], env->map);
-	ft_hook(env);
-	ft_draw(env);
-	mlx_loop(env->mlx);
+	printf("%d\n", key);
+	if (key == 6530)
+		exit(0);
 	return (0);
+}
+
+void	ft_hook(t_fdf *env)
+{
+	mlx_hook(env->win, 2, 0, ft_controls_hook, env);
 }
