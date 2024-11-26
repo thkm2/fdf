@@ -8,7 +8,10 @@ SRC = main.c init.c utils.c parse.c draw.c
 
 OBJ = ${SRC:.c=.o}
 
-MLX_PATH = minilibx/
+#MLX_PATH = minilibx/
+#LIB_MLX = $(MLX_PATH)libmlx.a
+
+MLX_PATH = minilibx-linux/
 LIB_MLX = $(MLX_PATH)libmlx.a
 
 LIBFT_PATH = libft/
@@ -19,8 +22,11 @@ GNL = $(GNL_PATH)get_next_line.c $(GNL_PATH)get_next_line_utils.c
 
 all: $(NAME)
 
+#$(NAME): $(OBJ) $(LIBFT) $(LIB_MLX)
+#	$(CC) $(OBJ) $(GNL) $(LIBFT) $(LIB_MLX) -o $(NAME) -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+
 $(NAME): $(OBJ) $(LIBFT) $(LIB_MLX)
-	$(CC) $(OBJ) $(GNL) $(LIBFT) $(LIB_MLX) -o $(NAME) -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+	$(CC) $(OBJ) $(GNL) $(LIBFT) $(LIB_MLX) -o $(NAME) -L$(MLX_PATH) -lmlx -lGL -lX11 -lXext -lm
 
 %.o: %.c
 	$(CC) -c $< -o $@
