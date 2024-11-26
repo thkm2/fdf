@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/25 15:27:57 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:03:59 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_map	*ft_map_init(char *file_name)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return_error("Malloc struct map error");
+	map->width = 0;
+	map->height = 0;
 	ft_get_map_dimensions(file_name, &map->width, &map->height);
 	map->points = (t_point **)malloc(sizeof(t_point *) * (map->height));
 	if (!map->points)
