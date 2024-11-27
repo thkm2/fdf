@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:51 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/26 16:43:25 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:30:10 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_fdf	*ft_env_init(char *map_path);
 void	return_error(char *s);
 int		ft_atoi_hex(const char *s);
 int		ft_abs(int nb);
+int		ft_min(int a, int b);
 
 // parse.c
 void	ft_parse_map(char *file_name, t_map *map);

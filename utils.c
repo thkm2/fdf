@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:18:33 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/25 17:14:55 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:29:52 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,11 @@ int	ft_abs(int nb)
 	if (nb < 0)
 		return (-nb);
 	return (nb);
+}
+
+int	ft_min(int a, int b)
+{
+	if (a > b)
+		return (b);
+	return (a);
 }
