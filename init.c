@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/26 13:03:59 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/28 14:41:50 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,18 @@ t_map	*ft_map_init(char *file_name)
 	return (map);
 }
 
+t_camera	*ft_camera_init(t_fdf *env)
+{
+	t_camera	*cam;
+
+	cam = (t_camera *)malloc(sizeof(t_camera));
+	if (!cam)
+		return (NULL);
+	cam->zoom = ft_min((WIDTH / env->map->width / 2), (HEIGHT / env->map->height / 2));
+	cam->z_height = cam->zoom / 2;
+	return (cam);
+}
+
 t_fdf	*ft_env_init(char *file_name)
 {
 	t_fdf	*env;
@@ -93,5 +105,8 @@ t_fdf	*ft_env_init(char *file_name)
 	env->map = ft_map_init(file_name);
 	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
 	env->addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line, &env->endian);
+	env->camera = ft_camera_init(env);
+	if (!env->camera)
+		return_error("Malloc camera error");
 	return (env);
 }

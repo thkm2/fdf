@@ -6,25 +6,30 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:07:20 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/27 16:43:24 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/28 14:49:25 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_transform(t_fdf *env, int *x, int *y)
+void	ft_transform(t_fdf *env, int *x, int *y, int z)
 {
 	int	scale;
-	int	shift_x;
-	int	shift_y;
+	int	old_x;
+	int	old_y;
 
-	scale = ft_min(((WIDTH / 10 * 3) / (env->map->width)), ((HEIGHT / 10 * 3) / (env->map->height)));
-	shift_x = (WIDTH / 2) - (env->map->width * scale * cos(M_PI / 6) / 2);
-	shift_y = (HEIGHT / 2) - (env->map->height * scale * sin(M_PI / 6) / 2);
+	scale = env->camera->zoom;//ft_min(((WIDTH * 0.5) / (env->map->width)), ((HEIGHT * 0.5) / (env->map->height))) * env->camera->zoom;
 	*x *= scale;
 	*y *= scale;
-	*x += shift_x;
-	*y += shift_y;
+	z *= env->camera->z_height;
+	*x -= (env->map->width * scale) / 2;
+	*y -= (env->map->height * scale) / 2;
+	old_x = *x;
+	old_y = *y;
+	*x = (old_x - old_y) * cos(M_PI / 6);
+	*y = (old_x + old_y) * sin(M_PI / 6) - z;
+	*x += WIDTH / 2;
+	*y += HEIGHT / 2;
 }
 
 void	ft_put_pixel_to_image(t_fdf *env, int x, int y, int color)
@@ -43,8 +48,8 @@ void	ft_draw_line(t_fdf *env, int x_0, int y_0, int x_1, int y_1, int color)
 {
 	t_bresenham b;
 	
-	ft_transform(env, &x_0, &y_0);
-	ft_transform(env, &x_1, &y_1);
+	ft_transform(env, &x_0, &y_0, env->map->points[y_0][x_0].z);
+	ft_transform(env, &x_1, &y_1, env->map->points[y_1][x_1].z);
 	b.x_distance = ft_abs(x_0 - x_1);
 	b.y_distance = ft_abs(y_0 - y_1);
 	b.x_direction = 1;

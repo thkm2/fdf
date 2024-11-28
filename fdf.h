@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:51 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/27 15:30:10 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/28 14:41:10 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct s_map
 	t_point	**points;
 }	t_map;
 
+typedef struct s_camera
+{
+	int		zoom;
+	int		z_height;
+}	t_camera;
+
 typedef struct s_fdf
 {
 	void	*mlx;
@@ -49,6 +55,7 @@ typedef struct s_fdf
 	int		bpp;
 	int		size_line;
 	int		endian;
+	t_camera	*camera;
 }	t_fdf;
 
 typedef struct s_bresenham
