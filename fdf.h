@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:51 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 14:41:10 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/28 16:12:55 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_camera
 {
 	int		zoom;
 	int		z_height;
+	double	angle;
 }	t_camera;
 
 typedef struct s_fdf

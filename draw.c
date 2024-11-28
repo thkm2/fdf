@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:07:20 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 15:45:59 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/28 16:13:46 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_transform(t_fdf *env, int *x, int *y, int z)
 	*y -= (env->map->height * scale) / 2;
 	old_x = *x;
 	old_y = *y;
-	*x = (old_x - old_y) * cos(M_PI / 6);
-	*y = (old_x + old_y) * sin(M_PI / 6) - z;
+	*x = (old_x - old_y) * cos(env->camera->angle);
+	*y = (old_x + old_y) * sin(env->camera->angle) - z;
 	*x += WIDTH / 2;
 	*y += HEIGHT / 2;
 }
