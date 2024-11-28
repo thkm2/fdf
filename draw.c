@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:07:20 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 14:49:25 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/28 14:56:32 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_transform(t_fdf *env, int *x, int *y, int z)
 	int	old_x;
 	int	old_y;
 
-	scale = env->camera->zoom;//ft_min(((WIDTH * 0.5) / (env->map->width)), ((HEIGHT * 0.5) / (env->map->height))) * env->camera->zoom;
+	scale = env->camera->zoom;
 	*x *= scale;
 	*y *= scale;
 	z *= env->camera->z_height;
