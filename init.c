@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 14:41:50 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/28 15:44:04 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_camera	*ft_camera_init(t_fdf *env)
 	if (!cam)
 		return (NULL);
 	cam->zoom = ft_min((WIDTH / env->map->width / 2), (HEIGHT / env->map->height / 2));
-	cam->z_height = cam->zoom / 2;
+	cam->z_height = 1;
 	return (cam);
 }
 
