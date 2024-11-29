@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 16:25:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/29 18:34:14 by kgiraud          ###   ########.fr       */
+/*   Created: 2024/11/29 18:25:54 by kgiraud           #+#    #+#             */
+/*   Updated: 2024/11/29 18:45:17 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int ac, char **av)
+void	ft_free_map(t_map *map)
 {
-	t_fdf	*env;
+	int	y;
 
-	if (ac != 2)
-	{
-		ft_putendl_fd("Usage: ./fdf <map.fdf>", 2);
-		return (1);
-	}
-	env = ft_env_init(av[1]);
-	ft_parse_map(av[1], env);
-	ft_hook(env);
-	ft_draw(env);
-	mlx_loop(env->mlx);
-	ft_free_fdf(env);
-	return (0);
+	if (!map)
+		return ;
+	y = -1;
+	while (++y < map->height)
+		free(map->points[y]);
+	free(map->points);
+	free(map);
+}
+
+void	ft_free_fdf(t_fdf *env)
+{
+	if (!env)
+		return ;
+	if (env->map)
+		ft_free_map(env->map);
+	if (env->camera)
+		free(env->camera);
+	if (env->img)
+		mlx_destroy_image(env->mlx, env->img);
+	if (env->mlx && env->win)
+		mlx_destroy_window(env->mlx, env->win);
+	free(env);
 }

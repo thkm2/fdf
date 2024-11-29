@@ -6,14 +6,15 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:18:33 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/29 14:39:45 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/29 18:29:27 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	return_error(char *s)
+void	return_error(char *s, t_fdf *env)
 {
+	ft_free_fdf(env);
 	perror(s);
 	exit(1);
 }
