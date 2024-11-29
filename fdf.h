@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:51 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 16:12:55 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/29 14:34:51 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ typedef struct s_camera
 
 typedef struct s_fdf
 {
-	void	*mlx;
-	void	*win;
-	t_map	*map;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	void		*mlx;
+	void		*win;
+	t_map		*map;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			size_line;
+	int			endian;
 	t_camera	*camera;
 }	t_fdf;
 

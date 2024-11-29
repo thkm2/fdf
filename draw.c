@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:07:20 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 16:13:46 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/29 14:37:05 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_put_pixel_to_image(t_fdf *env, int x, int y, int color)
 
 void	ft_draw_line(t_fdf *env, int x_0, int y_0, int x_1, int y_1, int color)
 {
-	t_bresenham b;
-	
+	t_bresenham	b;
+
 	ft_transform(env, &x_0, &y_0, env->map->points[y_0][x_0].z);
 	ft_transform(env, &x_1, &y_1, env->map->points[y_1][x_1].z);
 	b.x_distance = ft_abs(x_0 - x_1);
@@ -89,7 +89,7 @@ void	ft_draw(t_fdf *env)
 		{
 			if (x + 1 < env->map->width)
 				ft_draw_line(env, x, y, x + 1, y, env->map->points[y][x].color);
-			if (y + 1< env->map->height)
+			if (y + 1 < env->map->height)
 				ft_draw_line(env, x, y, x, y + 1, env->map->points[y][x].color);
 			x++;
 		}

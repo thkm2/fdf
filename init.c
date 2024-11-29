@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 16:13:31 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/29 14:38:41 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ t_camera	*ft_camera_init(t_fdf *env)
 	cam = (t_camera *)malloc(sizeof(t_camera));
 	if (!cam)
 		return (NULL);
-	cam->zoom = ft_min((WIDTH / env->map->width / 2), (HEIGHT / env->map->height / 2));
+	cam->zoom = ft_min((WIDTH / env->map->width / 2),
+			(HEIGHT / env->map->height / 2));
 	cam->z_height = 1;
 	cam->angle = M_PI / 6;
 	return (cam);
@@ -105,7 +106,8 @@ t_fdf	*ft_env_init(char *file_name)
 		return_error("Mlx new window error");
 	env->map = ft_map_init(file_name);
 	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-	env->addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line, &env->endian);
+	env->addr = mlx_get_data_addr(env->img, &env->bpp,
+			&env->size_line, &env->endian);
 	env->camera = ft_camera_init(env);
 	if (!env->camera)
 		return_error("Malloc camera error");

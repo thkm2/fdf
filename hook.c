@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:24:32 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/28 16:40:49 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/29 14:38:15 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_controls_hook(int key, t_fdf *env)
 		if (env->camera->angle > M_PI / 12)
 			env->camera->angle -= M_PI / 128;
 	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-	env->addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line, &env->endian);
+	env->addr = mlx_get_data_addr(env->img, &env->bpp,
+			&env->size_line, &env->endian);
 	ft_draw(env);
 	return (0);
 }
