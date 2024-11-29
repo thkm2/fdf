@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:07:20 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/29 14:37:05 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/29 16:45:32 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,37 @@ void	ft_put_pixel_to_image(t_fdf *env, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	ft_draw_line(t_fdf *env, int x_0, int y_0, int x_1, int y_1, int color)
+int	ft_find_direction(int n_1, int n_2)
+{
+	if (n_1 > n_2)
+		return (-1);
+	return (1);
+}
+
+void	ft_draw_line(t_fdf *env, int *pos, int color)
 {
 	t_bresenham	b;
 
-	ft_transform(env, &x_0, &y_0, env->map->points[y_0][x_0].z);
-	ft_transform(env, &x_1, &y_1, env->map->points[y_1][x_1].z);
-	b.x_distance = ft_abs(x_0 - x_1);
-	b.y_distance = ft_abs(y_0 - y_1);
-	b.x_direction = 1;
-	b.y_direction = 1;
-	if (x_0 > x_1)
-		b.x_direction = -1;
-	if (y_0 > y_1)
-		b.y_direction = -1;
+	ft_transform(env, &pos[0], &pos[1], env->map->points[pos[1]][pos[0]].z);
+	ft_transform(env, &pos[2], &pos[3], env->map->points[pos[3]][pos[2]].z);
+	b.x_distance = ft_abs(pos[0] - pos[2]);
+	b.y_distance = ft_abs(pos[1] - pos[3]);
+	b.x_direction = ft_find_direction(pos[0], pos[2]);
+	b.y_direction = ft_find_direction(pos[1], pos[3]);
 	b.err = b.x_distance - b.y_distance;
-	while (x_0 != x_1 || y_0 != y_1)
+	while (pos[0] != pos[2] || pos[1] != pos[3])
 	{
-		ft_put_pixel_to_image(env, x_0, y_0, color);
+		ft_put_pixel_to_image(env, pos[0], pos[1], color);
 		b.err2 = 2 * b.err;
 		if (b.err2 > -b.y_distance)
 		{
 			b.err -= b.y_distance;
-			x_0 += b.x_direction;
+			pos[0] += b.x_direction;
 		}
 		if (b.err2 < b.x_distance)
 		{
 			b.err += b.x_distance;
-			y_0 += b.y_direction;
+			pos[1] += b.y_direction;
 		}
 	}
 }
@@ -80,20 +83,27 @@ void	ft_draw(t_fdf *env)
 {
 	int	x;
 	int	y;
+	int	pos[4];
 
-	y = 0;
-	while (y < env->map->height)
+	y = -1;
+	while (++y < env->map->height)
 	{
-		x = 0;
-		while (x < env->map->width)
+		x = -1;
+		while (++x < env->map->width)
 		{
+			pos[0] = x;
+			pos[1] = y;
+			pos[2] = x + 1;
+			pos[3] = y;
 			if (x + 1 < env->map->width)
-				ft_draw_line(env, x, y, x + 1, y, env->map->points[y][x].color);
+				ft_draw_line(env, pos, env->map->points[y][x].color);
+			pos[0] = x;
+			pos[1] = y;
+			pos[2] = x;
+			pos[3] = y + 1;
 			if (y + 1 < env->map->height)
-				ft_draw_line(env, x, y, x, y + 1, env->map->points[y][x].color);
-			x++;
+				ft_draw_line(env, pos, env->map->points[y][x].color);
 		}
-		y++;
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }
