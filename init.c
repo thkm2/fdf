@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/29 18:32:43 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/02 13:34:36 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,27 @@ int	ft_get_width(char *s, t_fdf *env)
 {
 	char	**split;
 	int		width;
+	int		error;
 
 	width = 0;
+	error = 0;
 	split = ft_split(s, ' ');
 	if (!split)
 		return_error("Split error", env);
 	while (split[width])
 	{
+		if (!split[width][0] || (split[width][0] >= 9 && split[width][0] <= 13)
+			|| split[width][0] == 32)
+			error++;
 		free(split[width]);
 		width++;
 	}
 	free(split);
-	return (width);
+	return (width - error);
 }
 
-void	ft_get_map_dimensions(char *file_name, int *width, int *height, t_fdf *env)
+void	ft_get_map_dimensions(char *file_name, int *width,
+		int *height, t_fdf *env)
 {
 	int		fd;
 	char	*line;
@@ -86,6 +92,8 @@ t_camera	*ft_camera_init(t_fdf *env)
 		return_error("Malloc cam error", env);
 	cam->zoom = ft_min((WIDTH / env->map->width / 2),
 			(HEIGHT / env->map->height / 2));
+	if (cam->zoom == 0)
+		cam->zoom = 1;
 	cam->z_height = 1;
 	cam->angle = M_PI / 6;
 	return (cam);
