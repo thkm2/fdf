@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:18:33 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/12/02 16:15:05 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:38:29 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,4 @@ int	ft_min(int a, int b)
 	if (a > b)
 		return (b);
 	return (a);
-}
-
-void	ft_print_commands(t_fdf *env)
-{
-	mlx_string_put(env->mlx, env->win, 10, 10, 0xFFFFFF, "Zoom : fleche haut/bas");
-	mlx_string_put(env->mlx, env->win, 10, 40, 0xFFFFFF, "Rotation : fleche gauche/droite");
-	mlx_string_put(env->mlx, env->win, 10, 70, 0xFFFFFF, "Z : command/option de droite");
-	mlx_string_put(env->mlx, env->win, 10, 100, 0xFFFFFF, "Quitter : esc");
 }

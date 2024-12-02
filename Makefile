@@ -4,7 +4,7 @@ CC = cc -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRC = main.c init.c utils.c parse.c draw.c hook.c free.c
+SRC = main.c init.c utils.c parse.c draw.c hook.c free.c command.c
 
 OBJ = ${SRC:.c=.o}
 

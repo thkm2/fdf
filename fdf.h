@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:49:51 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/12/02 16:07:38 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:42:54 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@ typedef struct s_map
 	int		width;
 	int		height;
 	t_point	**points;
+	int		def_color;
 }	t_map;
 
 typedef struct s_camera
 {
 	int		zoom;
 	int		z_height;
+	int		add_shift_x;
+	int		add_shift_y;
 	double	angle;
 }	t_camera;
 
@@ -77,7 +80,6 @@ void	return_error(char *s, t_fdf *env);
 int		ft_atoi_hex(const char *s);
 int		ft_abs(int nb);
 int		ft_min(int a, int b);
-void	ft_print_commands(t_fdf *env);
 
 // parse.c
 void	ft_parse_map(char *file_name, t_fdf *env);
@@ -90,5 +92,11 @@ void	ft_hook(t_fdf *env);
 
 // free.c
 void	ft_free_fdf(t_fdf *env);
+
+// command.c
+void	ft_print_commands(t_fdf *env);
+int		ft_close_window(t_fdf *env);
+void	ft_shift(int key, t_fdf *env);
+void	ft_change_color(int key, t_fdf *env);
 
 #endif

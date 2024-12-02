@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 15:04:47 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/12/02 13:34:36 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:34:30 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ t_map	*ft_map_init(char *file_name, t_fdf *env)
 			return_error("Malloc map **points error", env);
 		i++;
 	}
+	map->def_color = 0xFFFFFF;
 	return (map);
 }
 
@@ -95,6 +96,8 @@ t_camera	*ft_camera_init(t_fdf *env)
 	if (cam->zoom == 0)
 		cam->zoom = 1;
 	cam->z_height = 1;
+	cam->add_shift_x = 0;
+	cam->add_shift_y = 0;
 	cam->angle = M_PI / 6;
 	return (cam);
 }

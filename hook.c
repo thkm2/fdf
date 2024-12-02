@@ -6,17 +6,18 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:24:32 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/29 18:49:31 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:43:02 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_close_window(t_fdf *env)
+void	ft_reload(t_fdf *env)
 {
-	ft_free_fdf(env);
-	exit(0);
-	return (0);
+	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
+	env->addr = mlx_get_data_addr(env->img, &env->bpp,
+			&env->size_line, &env->endian);
+	ft_draw(env);
 }
 
 // Mac
@@ -40,10 +41,11 @@ int	ft_controls_hook(int key, t_fdf *env)
 	if (key == 123)
 		if (env->camera->angle > M_PI / 12)
 			env->camera->angle -= M_PI / 128;
-	env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-	env->addr = mlx_get_data_addr(env->img, &env->bpp,
-			&env->size_line, &env->endian);
-	ft_draw(env);
+	if (key == 13 || key == 0 || key == 1 || key == 2)
+		ft_shift(key, env);
+	if (key == 18 || key == 19 || key == 20 || key == 21)
+		ft_change_color(key, env);
+	ft_reload(env);
 	return (0);
 }
 

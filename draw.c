@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:07:20 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/12/02 16:08:09 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:46:26 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_transform(t_fdf *env, int *x, int *y, int z)
 	old_y = *y;
 	*x = (old_x - old_y) * cos(env->camera->angle);
 	*y = (old_x + old_y) * sin(env->camera->angle) - z;
-	*x += WIDTH / 2;
-	*y += HEIGHT / 2;
+	*x += WIDTH / 2 + env->camera->add_shift_x;
+	*y += HEIGHT / 2 + env->camera->add_shift_y;
 }
 
 void	ft_put_pixel_to_image(t_fdf *env, int x, int y, int color)
@@ -41,6 +41,8 @@ void	ft_put_pixel_to_image(t_fdf *env, int x, int y, int color)
 		return ;
 	position = (y * env->size_line) + (x * (env->bpp / 8));
 	dst = env->addr + position;
+	if (color == -1)
+		color = env->map->def_color;
 	*(unsigned int *)dst = color;
 }
 
