@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:07:20 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/12/02 13:46:47 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:08:09 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,5 @@ void	ft_draw(t_fdf *env)
 		}
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	ft_print_commands(env);
 }
