@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgiraud <kgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:24:32 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/12/02 16:43:02 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/03 13:16:46 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_reload(t_fdf *env)
 	env->addr = mlx_get_data_addr(env->img, &env->bpp,
 			&env->size_line, &env->endian);
 	ft_draw(env);
+	ft_print_commands(env);
 }
 
 // Mac
