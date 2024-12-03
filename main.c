@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kgiraud <kgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:25:56 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/29 18:34:14 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/12/03 13:13:11 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 	ft_parse_map(av[1], env);
 	ft_hook(env);
 	ft_draw(env);
+	ft_print_commands(env);
 	mlx_loop(env->mlx);
 	ft_free_fdf(env);
 	return (0);
